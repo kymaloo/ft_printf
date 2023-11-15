@@ -2,16 +2,21 @@ NAME = libftprintf.a
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -Iheader
 
-SRC =	
+SRC =	printf/ft_hexadecimal.c \
+		printf/ft_printf.c \
 
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	ar -rc $(NAME) $(OBJ)
+lib :
+	make -C libft/ 
+	cp -rf libft/libft.a $(NAME)
+
+$(NAME): lib $(OBJ)
+	ar -rcs $@ $(OBJ)
 
 clean:
 	rm -rf $(OBJ) $(OBJ_BONUS)
@@ -21,4 +26,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY : all clean fclean re 
+.PHONY : all clean fclean re lib

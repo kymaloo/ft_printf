@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: trgaspar <trgaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 19:16:53 by trgaspar          #+#    #+#             */
-/*   Updated: 2023/11/08 19:52:30 by trgaspar         ###   ########.fr       */
+/*   Created: 2023/11/01 15:45:53 by trgaspar          #+#    #+#             */
+/*   Updated: 2023/11/13 19:24:50 by trgaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "../header/libft.h"
 
-void	ft_putchar_fd(char c, int fd);
-void	ft_putnbr_fd(int n, int fd);
-void	ft_putnbr_unsigned_fd(int u, int *fd);
-void	ft_putstr_fd(char *s, int fd);
-
-#endif
+int	ft_putchar_fd(char c, int fd)
+{
+	return (write (fd, &c, 1));
+}

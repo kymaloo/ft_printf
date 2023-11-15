@@ -1,31 +1,62 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: trgaspar <trgaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 15:36:13 by trgaspar          #+#    #+#             */
-/*   Updated: 2023/11/08 20:05:21 by trgaspar         ###   ########.fr       */
+/*   Updated: 2023/11/15 15:51:53 by trgaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../header/libft.h"
 
-void	ft_putnbr(int n)
+int	ft_putnbr_fd(int n, int fd)
 {
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
 	if (n == -2147483648)
-		ft_putstr("-2147483648");
+		return (ft_putstr_fd("-2147483648", fd));
 	else if (n < 0)
 	{
-		ft_putchar('-');
-		ft_putnbr(-n);
+		if (ft_putchar_fd('-', fd) == -1)
+			return (-1);
+		n = -n;
+		i++;
 	}
-	else if (n >= 10)
+	if (n >= 10)
 	{
-		ft_putnbr(n / 10);
-		ft_putchar(n % 10 + '0');
+		j = ft_putnbr_fd(n / 10, fd);
+		if (j == -1)
+			return (-1);
+		i += j;
 	}
-	else
-		ft_putchar(n + '0');
+	if (ft_putchar_fd(n % 10 + '0', fd) == -1)
+		return (-1);
+	i++;
+	return (i);
+}
+
+int	ft_putnbr_unsigned(unsigned int u)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	if (u >= 10)
+	{
+		j = ft_putnbr_fd(u / 10, 1);
+		if (j == -1)
+			return (-1);
+		i += j;
+	}
+	if (ft_putchar_fd(u % 10 + '0', 1) == -1)
+		return (-1);
+	i++;
+	return (i);
 }

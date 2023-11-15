@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_unsigned_fd .c                           :+:      :+:    :+:   */
+/*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: trgaspar <trgaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/02 15:36:13 by trgaspar          #+#    #+#             */
-/*   Updated: 2023/11/08 19:59:42 by trgaspar         ###   ########.fr       */
+/*   Created: 2023/10/25 13:10:36 by trgaspar          #+#    #+#             */
+/*   Updated: 2023/11/13 19:44:28 by trgaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#ifndef LIBFT_H
+# define LIBFT_H
 
-void	ft_putnbr_unsigned_fd(int u, int *count)
-{
-	if (u <= 9)
-	{
-		ft_putchar_fd(u + '0', count);
-		*count += 1;
-	}
-	if (u >= 10)
-	{
-		ft_putnbr(u / 10, count);
-		ft_putchar(u % 10, count);
-	}
-}
+# include <stdlib.h>
+# include <unistd.h>
+
+int		ft_putchar_fd(char c, int fd);
+int		ft_putnbr_fd(int n, int fd);
+int		ft_putstr_fd(char *s, int fd);
+int		ft_putnbr_unsigned(unsigned int u);
+size_t	ft_strlen(const char *s);
+
+#endif
